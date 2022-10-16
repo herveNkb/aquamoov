@@ -44,6 +44,11 @@ a:not([class]) {
     text-decoration-skip-ink: auto;
 }
 
+/* Suppression of underline links */
+a {
+    text-decoration: none;
+}
+
 /* Make images easier to work with */
 img,
 picture {
