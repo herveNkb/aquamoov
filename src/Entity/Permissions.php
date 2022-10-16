@@ -25,6 +25,12 @@ class Permissions
     #[ORM\Column]
     private ?bool $sale_drinks = null;
 
+    #[ORM\ManyToOne(inversedBy: 'permissions')]
+    private ?Users $users = null;
+
+    #[ORM\ManyToOne(inversedBy: 'permissions')]
+    private ?Structures $structures = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +80,30 @@ class Permissions
     public function setSaleDrinks(bool $sale_drinks): self
     {
         $this->sale_drinks = $sale_drinks;
+
+        return $this;
+    }
+
+    public function getUsers(): ?Users
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?Users $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    public function getStructures(): ?Structures
+    {
+        return $this->structures;
+    }
+
+    public function setStructures(?Structures $structures): self
+    {
+        $this->structures = $structures;
 
         return $this;
     }
