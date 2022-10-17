@@ -1,3 +1,15 @@
+/*!**/
+/* - Couleurs:*/
+/*primaire :  #b2abbf*/
+/*Secondaire : #2632A8*/
+/*Secondaire ~ hover :  #DCD6F7*/
+
+/* - Fonts :*/
+/* titre principal : Lobster Regular*/
+/* navigation et les sous-titres : Duru Sans Regular*/
+/* textes : Rubik Regular*/
+/**!*/
+
 body {
     background-color: #b2abbf;
     font-family: Rubik-Regular, sans-serif;
@@ -23,7 +35,65 @@ h1 {
     color: #2632A8;
 }
 
-/* Main Page*/
+/* Nav Bar*/
+.nav-logo {
+    height: 50px;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.btn-outline-light, .nav-item a {
+    color: #2632A8;
+}
+
+.nav-item a:hover {
+    color: #DCD6F7;
+}
+
+/* Begin Button*/
+/* Form Button */
+.container-btn-form {
+    text-align: right;
+}
+
+.btn-form-position {
+    margin-bottom: 80px;
+}
+
+.btn-form {
+    border: none;
+    background-color: #2632A8;
+    color: #b2abbf;
+    padding: 5px 15px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+}
+
+.btn-form:hover {
+    background-color: #DCD6F7;
+    color: #2632A8;
+    cursor: pointer;
+}
+
+/*Table Button and Link Button*/
+.btn-link {
+    text-decoration: none;
+    color: white;
+}
+
+.container-btn-table {
+    margin: 8px 0;
+}
+
+.btn-delete {
+    background-color: crimson;
+}
+
+/*  End Button */
+
+ /* Main Page*/
 .background-image::before {
     background-image: url(../image/background.jpg);
     background-size: cover;
@@ -52,4 +122,369 @@ h1 {
 .logo-center-svg {
     height: 550px;
     width: 100%;
+    -webkit-animation: slide-in-elliptic 1.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-in-elliptic 1.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
+
+/* small animation effect on SVG logo only for laptop and desktop pc */
+@media screen and (min-width: 1280px) {
+    @-webkit-keyframes slide-in-elliptic {
+        0% {
+            -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
+            transform: translateY(-600px) rotateX(-30deg) scale(0);
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+            opacity: 0;
+        }
+        100% {
+            -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+            -webkit-transform-origin: 50% 1400px;
+            transform-origin: 50% 1400px;
+            opacity: 1;
+        }
+    }
+}
+
+/* Login Form */
+.title-form {
+    padding: 50px 0 30px;
+    text-align: center;
+    font-size: 42px;
+}
+
+.form-login label {
+    margin-top: 20px;
+    color: #424874;
+}
+
+.form-login input {
+    margin: 8px 0 0;
+}
+
+.forgot-password {
+    padding-top: 15px;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: #2632A8;
+    font-size: 12px;
+}
+
+.btn-login {
+    margin-top: 40px;
+}
+
+/* Login Form Tablet */
+@media screen and (min-width: 860px) {
+    .title-form {
+        font-size: 72px;
+        padding: 100px 0 70px;
+    }
+
+    .form-login {
+        padding: 0 50px;
+        margin-top: 40px;
+    }
+}
+
+/* Login Form Laptop */
+@media screen and (min-width: 1280px) {
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-login {
+        width: 800px;
+        margin: 0;
+    }
+
+    .title-form {
+        font-size: 100px;
+    }
+}
+
+/* Login Form Desktop */
+@media screen and (min-width: 1920px) {
+    .title-form {
+        padding: 100px 0 100px;
+    }
+
+    .btn-login, .form-login label {
+        font-size: 24px;
+    }
+}
+
+/*Register Form*/
+.container-form {
+    margin: 0 25px;
+}
+
+.form-control { /* Spacing enter input*/
+    margin-top: 30px;
+}
+
+.form { /* text placeholder input*/
+    color: #424874;
+    font-family: Rubik-Regular, sans-serif;
+}
+
+legend { /* "Rôles" */
+    margin-top: 20px;
+}
+
+.form-check {
+    margin-bottom: 8px;
+}
+
+/* Form Register Tablet */
+@media screen and (min-width: 860px) {
+    .form-register-tablet {
+        margin: 0 40px;
+
+    }
+}
+
+/* Form Register Laptop */
+@media screen and (min-width: 1280px) {
+    .container-pc {
+        width: 600px;
+    }
+}
+
+/* Form Register Desktop */
+@media screen and (min-width: 1920px) {
+    .form-label { /* Font-size of placeholder text */
+        font-size: 18px;
+    }
+
+    .form-check-label {
+        font-size: 18px;
+    }
+
+    legend { /* "Rôles" */
+        font-size: xxx-large;
+    }
+}
+
+/* Table of admin/utilisateurs */
+.container-table {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 50px;
+}
+
+.h1-admin {
+    margin-top: 25px;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px 15px;
+    border: 1px solid #2632A8;
+}
+
+.table thead {
+    display: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+}
+
+.form-check-input {
+    left: 100%;
+    position: relative;
+}
+
+.table tr {
+    margin-bottom: 15px;
+}
+
+.table td {
+    text-align: right;
+    padding-left: 25%;
+    position: relative;
+    background-color: #DCD6F7;
+}
+
+.table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    padding-left: 15px;
+    color: #2632A8;
+}
+
+/* Table of admin/utilisateurs Laptop */
+@media screen and (min-width: 1280px) {
+    .table thead {
+        display: revert;
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: revert;
+        width: revert;
+    }
+
+    .container-table {
+        margin: 0 50px;
+    }
+
+    .table td::before {
+        content: none;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        padding-bottom: 150px;
+    }
+
+    .form-check-input {
+        left: 50%;
+    }
+
+    .table td, .table th {
+        text-align: center;
+        padding: 12px 15px;
+    }
+
+    .table th {
+        background-color: #f5f5f5;
+        color: #2632A8;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #DCD6F7;
+    }
+}
+
+/* Table of admin/utilisateurs Desktop */
+@media screen and (min-width: 1920px) {
+    .container-table {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+}
+
+/* Form Reset-Password */
+.h1-reset-password {
+    margin-top: 50px;
+}
+
+.container-form-reset-password {
+    margin-top: 50px;
+}
+
+.explicative-text-reset-password {
+    padding-top: 15px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+/* Form Reset-Password Tablet */
+@media screen and (min-width: 680px) {
+    .container-form-reset-password {
+        margin: 0 50px;
+    }
+}
+
+/* Page check-Email */
+.container-check-email {
+    margin: 80px 25px 0;
+}
+
+.text-check-email {
+    margin-bottom: 25px;
+}
+
+.container-check-email :nth-child(2n) {
+    text-align: center;
+}
+
+.text-check-email a {
+    text-decoration: none;
+    color: #2632A8;
+}
+
+/* Page check-Email Tablet */
+@media screen and (min-width: 860px) {
+    .container-check-email {
+        margin: 100px 50px 0;
+    }
+
+    .container-check-email p {
+        font-size: 20px;
+    }
+}
+
+/* Page check-Email Laptop */
+@media screen and (min-width: 1280px) {
+    .container-check-email {
+        text-align: center;
+    }
+
+    .container-check-email {
+        margin: 100px 80px 0;
+    }
+}
+
+/* Page check-Email Desktop */
+@media screen and (min-width: 1920px) {
+    .container-check-email {
+        margin-top: 200px;
+    }
+
+    .text-check-email p {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
