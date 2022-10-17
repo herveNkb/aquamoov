@@ -93,12 +93,7 @@ h1 {
 
 /*  End Button */
 
- /*Page Accueil*/
-.background-image {
-    position: relative;
-    z-index: 1;
-}
-
+ /* Main Page*/
 .background-image::before {
     background-image: url(../image/background.jpg);
     background-size: cover;
