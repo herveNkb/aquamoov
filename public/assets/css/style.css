@@ -236,19 +236,22 @@ h1 {
     font-family: Rubik-Regular, sans-serif;
 }
 
-legend { /* "Rôles" */
-    margin-top: 20px;
+.form-check {
+    margin-bottom: 8px;
 }
 
 .form-check {
-    margin-bottom: 8px;
+    text-align: left;
+}
+
+legend {
+    margin-top: 25px;
 }
 
 /* Form Register Tablet */
 @media screen and (min-width: 860px) {
     .form-register-tablet {
         margin: 0 40px;
-
     }
 }
 
@@ -269,9 +272,6 @@ legend { /* "Rôles" */
         font-size: 18px;
     }
 
-    legend { /* "Rôles" */
-        font-size: xxx-large;
-    }
 }
 
 /* Table of admin/utilisateurs */
@@ -308,10 +308,10 @@ legend { /* "Rôles" */
 
 }
 
-.form-check-input {
-    left: 100%;
-    position: relative;
-}
+/*.form-check-input {*/
+/*    left: 100%;*/
+/*    position: relative;*/
+/*}*/
 
 .table tr {
     margin-bottom: 15px;
@@ -361,9 +361,9 @@ legend { /* "Rôles" */
         padding-bottom: 150px;
     }
 
-    .form-check-input {
-        left: 50%;
-    }
+    /*.form-check-input {*/
+    /*    left: 50%;*/
+    /*}*/
 
     .table td, .table th {
         text-align: center;
