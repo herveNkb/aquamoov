@@ -4,10 +4,6 @@
 
 {% block body %}
     <main class="background-image">
-        {# Message de confirmation, comme quoi l'email à été vérifié  #}
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success" role="alert">{{ message }}</div>
-        {% endfor %}
         <div class="logo-center-home-page">
             <img
                     class="logo-center-svg"
