@@ -1,11 +1,23 @@
-<h1>Hi! Please confirm your email!</h1>
-
+<h1>Attention, très important !</h1>
+<br>
+<h2>
+    Pour des raisons de sécurité, veuillez valider votre e-mail et modifier le mot de
+    passe qui vous a été communiqué par téléphone.
+</h2>
 <p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    En cliquant sur le lien ci-dessous, vous validerez votre adresse e-mail et serez
+    redirigé vers le formulaire de modification de mot de passe de façon sécurisé.
 </p>
-
 <p>
-    Cheers!
+    <a href="{{ signedUrl|raw }}">Confirmation de mon e-mail et changement de mot de passe</a>.
+</p>
+<p>
+    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+<p>
+    Si jamais le lien ne fonctionnait pas, merci de contacter le service marketing
+    d'Aqua Moov, pour qu'il vous régénère un nouveau.
+</p>
+<p>
+    Cordialement, l'équipe Aqua Moov
 </p>
