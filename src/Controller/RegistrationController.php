@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/enregistrement', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
@@ -89,6 +89,7 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre adresse e-mail à bien été vérifiée.');
 
-        return $this->redirectToRoute('app_main');    // À Modifier vers le reset password ##############################
+        // Require the user to change their password on first login
+        return $this->redirectToRoute('app_forgot_password_request');
     }
 }
