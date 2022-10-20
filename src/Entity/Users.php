@@ -38,7 +38,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $first_name = null;
 
     #[ORM\Column]
-    private ?bool $active = null;
+    private ?bool $active = true;
 
     #[ORM\OneToMany(mappedBy: 'users', targetEntity: Structures::class, orphanRemoval: true)]
     private Collection $structures;
