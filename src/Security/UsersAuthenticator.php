@@ -40,43 +40,43 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
-    {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
-
-        // For example:
-         return new RedirectResponse($this->urlGenerator->generate('app_main'));
-        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-    }
-
-
-
-    ### À mettre en place une fois les rôles activé, à la place de l'autre ! ! ! ###
 //    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
 //    {
-//        $user = $token->getUser();
-//
-//        if (in_array('ROLE_ADMIN', $user ->getRoles())) {
-//            return new RedirectResponse($this->urlGenerator->generate('app_admin_utilisateurs'));
-//        }
-//
-//        if (in_array('ROLE_FRANCHISE', $user ->getRoles())) {
-//            return new RedirectResponse($this->urlGenerator->generate('app_admin_franchise'));
-//        }
-//
-//        if (in_array('ROLE_STRUCTURE', $user ->getRoles())) {
-//            return new RedirectResponse($this->urlGenerator->generate('app_admin_structure'));
-//        }
-//
 //        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
 //            return new RedirectResponse($targetPath);
 //        }
 //
-//
-//        return new RedirectResponse($this->urlGenerator->generate('app_main'));
+//        // For example:
+//         return new RedirectResponse($this->urlGenerator->generate('app_main'));
+//        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
 //    }
+
+
+
+    ### À mettre en place une fois les rôles activé, à la place de l'autre ! ! ! ###
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        $user = $token->getUser();
+
+        if (in_array('ROLE_ADMIN', $user ->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin'));
+        }
+
+        if (in_array('ROLE_FRANCHISE', $user ->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_franchise'));
+        }
+
+        if (in_array('ROLE_STRUCTURE', $user ->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin_structure'));
+        }
+
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            return new RedirectResponse($targetPath);
+        }
+
+
+        return new RedirectResponse($this->urlGenerator->generate('app_main'));
+    }
 
     protected function getLoginUrl(Request $request): string
     {
