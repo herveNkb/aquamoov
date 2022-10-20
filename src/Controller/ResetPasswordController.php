@@ -157,7 +157,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('no-reply@aquamoov.tech', 'L\'équipe d\'Aqua Moov'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('Changement de mot de passe - Aqua Moov')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
