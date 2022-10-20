@@ -3,16 +3,17 @@
 {% block title %}Réinitialisation de mot de passe{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
 
-    {# Message de confirmation, comme quoi l'email à été vérifié  #}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">{{ message }}</div>
-    {% endfor %}
 
     <main class="container-form">
+        {% for flash_error in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger container-form-reset-password" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        {# Message de confirmation, comme quoi l'email à été vérifié  #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success container-form-reset-password" role="alert">{{ message }}</div>
+        {% endfor %}
         <h1 class="title-form h1-reset-password">Réinitialisez votre mot de passe</h1>
         <div class="form container-form-reset-password">
             {{ form_start(requestForm) }}
