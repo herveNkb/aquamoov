@@ -53,10 +53,14 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
 
 
 
-    ### À mettre en place une fois les rôles activé, à la place de l'autre ! ! ! ###
+    // Redirection to Admin page for all specify roles when the connection of application
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         $user = $token->getUser();
+
+        if (in_array('ROLE_SUPER-ADMIN', $user ->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('app_admin'));
+        }
 
         if (in_array('ROLE_ADMIN', $user ->getRoles())) {
             return new RedirectResponse($this->urlGenerator->generate('app_admin'));
