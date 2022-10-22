@@ -129,16 +129,15 @@
                             {% if role == "ROLE_FRANCHISE" %}
                                 <div class="container-btn-table">
                                     <a class="btn-form btn-link"
-                                       href="#"
-                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                        {# path of form with id for  target user#}
+                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
                                     >Modifier
                                     </a>
                                 </div>
                             {% elseif role == "ROLE_STRUCTURE" %}
                                 <div class="container-btn-table">
                                     <a class="btn-form btn-link"
-                                       href="#"
-                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
                                     >Modifier
                                     </a>
                                 </div>
@@ -146,8 +145,7 @@
                                 <div class="container-btn-table">
                                     <a class="btn-form btn-link"
                                        style="display: none"
-                                       href="#"
-                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
                                     >Modifier
                                     </a>
                                 </div>
