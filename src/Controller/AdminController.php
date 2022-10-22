@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Users;
+use App\Form\EditUserType;
 use App\Repository\UsersRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,6 +34,28 @@ class AdminController extends AbstractController
         return $this -> render("admin/users.html.twig", [
             // display users directly
             'users' => $users -> findAll()
+        ]);
+    }
+
+    //    Edit user profile with "Modifier" button
+    #[Route('/utilisateur.modifier/{id}', name: 'modifier_utilisateur')]
+    public function editUser(Users $user, Request $request, ManagerRegistry $doctrine): Response
+    {
+
+        $form = $this -> createForm(EditUserType::class, $user);
+        $form -> handleRequest($request);
+
+        if ($form -> isSubmitted() && $form -> isValid()) {
+            $entityManager = $doctrine -> getManager(); //new way to call entityManager into php 8
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Information(s) modifiée(s)');
+            return $this->redirectToRoute('app_admin_utilisateurs');
+        }
+
+        return $this->render('admin/edituser.html.twig', [
+            'userForm' =>$form->createView()
         ]);
     }
 
