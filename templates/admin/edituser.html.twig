@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification des informations{% endblock %}
+
+{% block body %}
+    <main class="container-form">
+        <h1>Modification des informations</h1>
+        <div class="form">
+            {{ form_start(userForm) }}
+            {{ form_row(userForm.email, {
+                label: 'E-mail',
+                attr: {
+                    placeholder: 'E-mail'
+                },
+                row_attr: {
+                    class: 'form-floating'
+                }
+            }) }}
+            {{ form_row(userForm.name, {
+                label: 'Nom',
+                attr: {
+                    placeholder: 'Nom'
+                },
+                row_attr: {
+                    class: 'form-floating'
+                }
+            }) }}
+            {{ form_row(userForm.first_name, {
+                label: 'Prénom',
+                attr: {
+                    placeholder: 'Prénom'
+                },
+                row_attr: {
+                    class: 'form-floating'
+                }
+            }) }}
+            <div class="container-btn-form">
+                <button type="submit" class="btn-form btn-form-position">Enregistrement</button>
+            </div>
+            {{ form_end(userForm) }}
+        </div>
+    </main>
+
+{% endblock %}
