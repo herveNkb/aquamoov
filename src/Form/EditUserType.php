@@ -46,7 +46,6 @@ class EditUserType extends AbstractType
                     ])
                 ]
             ])
-            ->add('Valider', SubmitType::class)
         ;
     }
 
