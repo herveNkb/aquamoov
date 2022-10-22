@@ -1,0 +1,234 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+    <h1 class="title-form h1-admin">Liste des utilisateurs</h1>
+    <div class="container-table">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>E-mail</th>
+                <th>Rôles</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Active</th>
+                <th>Structure</th>
+                <th>Modification</th>
+                <th>Suppression</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user  in users %}
+                <tr>
+                    <td data-label="Id">{{ user.id }}</td>
+                    <td data-label="E-mail">{{ user.email }}</td>
+                    <td data-label="Rôles">
+                        {# display the role of the array json of roles #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_USER" %}
+                                Structure
+                            {% elseif role == "ROLE_FRANCHISE" %}
+                                Franchise -
+                            {% elseif role == "ROLE_ADMIN" %}
+                                Admin - Franchise -
+                            {% elseif role == "ROLE_SUPER-ADMIN" %}
+                                Super admin - Admin - Franchise -
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td data-label="Nom">{{ user.name }}</td>
+                    <td data-label="Prénom">{{ user.firstname }}</td>
+                    <td data-label="Active">
+                        {# Display switch for enable or dislable profil of user according role #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_FRANCHISE" %}
+                                <div class="form-check form-switch">
+                                    <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            role="switch"
+                                            id="switchStatus"
+                                            {{ (user.active) ? 'checked' : '' }}
+                                            data-id="{{ user.id }}"
+                                    >
+                                    <label
+                                            class="form-check-label"
+                                            for="switchStatus">
+                                    </label>
+                                </div>
+                            {% elseif role == "ROLE_STRUCTURE" %}
+                                <div class="form-check form-switch">
+                                    <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            role="switch"
+                                            id="switchStatus"
+                                            {{ (user.active) ? 'checked' : '' }}
+                                            data-id="{{ user.id }}"
+                                    >
+                                    <label
+                                            class="form-check-label"
+                                            for="switchStatus">
+                                    </label>
+                                </div>
+                            {% else %}
+                                <div class="form-check form-switch">
+                                    <input
+                                            class="form-check-input"
+                                            style="display: none"
+                                            type="checkbox"
+                                            role="switch"
+                                            id="switchStatus"
+                                            {{ (user.active) ? 'checked' : '' }}
+                                            data-id="{{ user.id }}"
+                                    >
+                                    <label
+                                            class="form-check-label"
+                                            for="switchStatus">
+                                    </label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td data-label="Structure">
+                        {# Display button for add structure of user according role #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_FRANCHISE" %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       href="#"
+                                    >
+                                        Ajout
+                                    </a>
+                                </div>
+                            {% elseif role == "ROLE_STRUCTURE" %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       href="#"
+                                    >
+                                        Ajout
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       style="display: none"
+                                       href="#"
+                                    >
+                                        Ajout
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td data-label="Modification">
+                        {# Display button for modification profil of user according role #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_FRANCHISE" %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       href="#"
+                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                    >Modifier
+                                    </a>
+                                </div>
+                            {% elseif role == "ROLE_STRUCTURE" %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       href="#"
+                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                    >Modifier
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="container-btn-table">
+                                    <a class="btn-form btn-link"
+                                       style="display: none"
+                                       href="#"
+                                            {#                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}" #}
+                                    >Modifier
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    <td>
+                        {# Display button for delete profil of user according role #}
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_FRANCHISE" %}
+                                <div class="container-btn-table">
+                                    <a
+                                            href="#"
+                                            type="button"
+                                            class="btn-form btn-link btn-delete"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete-modal"
+                                            data-id="{{ user.id }}"
+                                            data-email="{{ user.email }}"
+                                    >
+                                        Supprimer
+                                    </a>
+                                </div>
+                            {% elseif role == "ROLE_STRUCTURE" %}
+                                <div class="container-btn-table">
+                                    <a
+                                            href="#"
+                                            type="button"
+                                            class="btn-form btn-link btn-delete"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete-modal"
+                                            data-id="{{ user.id }}"
+                                            data-email="{{ user.email }}"
+                                    >
+                                        Supprimer
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="container-btn-table">
+                                    <a
+                                            href="#"
+                                            type="button"
+                                            style="display: none"
+                                            class="btn-form btn-link btn-delete"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete-modal"
+                                            data-id="{{ user.id }}"
+                                            data-email="{{ user.email }}"
+                                    >
+                                        Supprimer
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan=5>Il n'y a pas d'utilisateur inscrit</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# Begin modal for deleted advertissement  #}
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression de compte</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a type="button" class="btn btn-primary">Valider</a>
+            </div>
+        </div>
+    </div>
+    {# End modal for deleted advertissement  #}
+
+
+{% endblock %}
