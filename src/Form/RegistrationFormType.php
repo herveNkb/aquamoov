@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,7 +43,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'required' => true
             ])
-            ->add('plainPassword', PasswordType::class, [
+            -> add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -67,18 +68,18 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Rôles :',
                 'constraints' => [
                     new NotBlank([
-                        'message'=>'Veuillez choisir un rôles !'
+                        'message' => 'Veuillez choisir un rôles !'
                     ])
                 ],
                 'expanded' => true,
                 'multiple' => true,
             ])
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver -> setDefaults([
             'data_class' => Users::class,
         ]);
     }
