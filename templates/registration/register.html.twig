@@ -29,6 +29,15 @@
                     class: 'form-floating'
                 }
             }) }}
+            {{ form_row(registrationForm.code_function, {
+                label:'Franchise et structure = 0, Administrateur = 1',
+                attr: {
+                    placeholder: 'Taper 1, si création administrateur'
+                },
+                row_attr: {
+                    class: 'form-floating'
+                }
+            }) }}
             {{ form_row(registrationForm.email, {
                 label: 'E-mail',
                 attr: {
