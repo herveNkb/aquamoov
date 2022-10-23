@@ -55,56 +55,6 @@
                                     for="switchStatus">
                             </label>
                         </div>
-                        {# Display switch for enable or dislable profil of user according role #}
-{#                        {% for role in user.roles %}#}
-{#                            {% if role == "ROLE_FRANCHISE" %}#}
-{#                                <div class="form-check form-switch">#}
-{#                                    <input#}
-{#                                            class="form-check-input"#}
-{#                                            type="checkbox"#}
-{#                                            role="switch"#}
-{#                                            id="switchStatus"#}
-{#                                            {{ (user.active) ? 'checked' : '' }} #}{# veridfication in ternaire if user is active #}
-{#                                            data-id="{{ user.id }}" #}{# for target in ajax #}
-{#                                    >#}
-{#                                    <label#}
-{#                                            class="form-check-label"#}
-{#                                            for="switchStatus">#}
-{#                                    </label>#}
-{#                                </div>#}
-{#                            {% elseif role == "ROLE_STRUCTURE" %}#}
-{#                                <div class="form-check form-switch">#}
-{#                                    <input#}
-{#                                            class="form-check-input"#}
-{#                                            type="checkbox"#}
-{#                                            role="switch"#}
-{#                                            id="switchStatus"#}
-{#                                            {{ (user.active) ? 'checked' : '' }}#}
-{#                                            data-id="{{ user.id }}"#}
-{#                                    >#}
-{#                                    <label#}
-{#                                            class="form-check-label"#}
-{#                                            for="switchStatus">#}
-{#                                    </label>#}
-{#                                </div>#}
-{#                            {% else %}#}
-{#                                <div class="form-check form-switch">#}
-{#                                    <input#}
-{#                                            class="form-check-input"#}
-{#                                            style="display: none"#}
-{#                                            type="checkbox"#}
-{#                                            role="switch"#}
-{#                                            id="switchStatus"#}
-{#                                            {{ (user.active) ? 'checked' : '' }}#}
-{#                                            data-id="{{ user.id }}"#}
-{#                                    >#}
-{#                                    <label#}
-{#                                            class="form-check-label"#}
-{#                                            for="switchStatus">#}
-{#                                    </label>#}
-{#                                </div>#}
-{#                            {% endif %}#}
-{#                        {% endfor %}#}
                     </td>
                     <td data-label="Structure">
                         {# Display button for add structure of user according role #}
@@ -138,81 +88,27 @@
                         {% endfor %}
                     </td>
                     <td data-label="Modification">
-                        {# Display button for modification profil of user according role #}
-                        {% for role in user.roles %}
-                            {% if role == "ROLE_FRANCHISE" %}
-                                <div class="container-btn-table">
-                                    <a class="btn-form btn-link"
-                                        {# path of form with id for  target user#}
-                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
-                                    >Modifier
-                                    </a>
-                                </div>
-                            {% elseif role == "ROLE_STRUCTURE" %}
-                                <div class="container-btn-table">
-                                    <a class="btn-form btn-link"
-                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
-                                    >Modifier
-                                    </a>
-                                </div>
-                            {% else %}
-                                <div class="container-btn-table">
-                                    <a class="btn-form btn-link"
-                                       style="display: none"
-                                       href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
-                                    >Modifier
-                                    </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                        <div class="container-btn-table">
+                            <a class="btn-form btn-link"
+                               href="{{ path('app_admin_modifier_utilisateur', { 'id' : user.id }) }}"
+                               type="button"
+                            >Modifier
+                            </a>
+                        </div>
                     <td>
-                        {# Display button for delete profil of user according role #}
-                        {% for role in user.roles %}
-                            {% if role == "ROLE_FRANCHISE" %}
-                                <div class="container-btn-table">
-                                    <a
-                                            href="#"
-                                            type="button"
-                                            class="btn-form btn-link btn-delete"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#delete-modal"
-                                            data-id="{{ user.id }}"
-                                            data-email="{{ user.email }}"
-                                    >
-                                        Supprimer
-                                    </a>
-                                </div>
-                            {% elseif role == "ROLE_STRUCTURE" %}
-                                <div class="container-btn-table">
-                                    <a
-                                            href="#"
-                                            type="button"
-                                            class="btn-form btn-link btn-delete"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#delete-modal"
-                                            data-id="{{ user.id }}"
-                                            data-email="{{ user.email }}"
-                                    >
-                                        Supprimer
-                                    </a>
-                                </div>
-                            {% else %}
-                                <div class="container-btn-table">
-                                    <a
-                                            href="#"
-                                            type="button"
-                                            style="display: none"
-                                            class="btn-form btn-link btn-delete"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#delete-modal"
-                                            data-id="{{ user.id }}"
-                                            data-email="{{ user.email }}"
-                                    >
-                                        Supprimer
-                                    </a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                        <div class="container-btn-table">
+                            <a
+                                    href="{{ path('app_admin_supprimer', { 'id' : user.id }) }}"
+                                    type="button"
+                                    class="btn-form btn-link btn-delete"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#alert-modal"
+                                    data-id="{{ user.id }}"
+                                    data-email="{{ user.email }}"
+                            >
+                                Supprimer
+                            </a>
+                        </div>
                     </td>
                 </tr>
             {% else %}
@@ -225,17 +121,34 @@
     </div>
 
     {# Begin modal for deleted advertissement  #}
-    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+            class="modal fade"
+            id="alert-modal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+    >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression de compte</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Votre attention est requise !</h1>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
             </div>
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                >
+                    Annuler
+                </button>
                 <a type="button" class="btn btn-primary">Valider</a>
             </div>
         </div>
