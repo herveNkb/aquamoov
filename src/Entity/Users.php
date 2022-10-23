@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -49,8 +50,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private ?bool $isVerified = false;
 
-    #[ORM\Column]
-    private ?int $code_function = null;
+    #[ORM\Column(nullable: false)]
+    /**
+     * Restrict possibility of number choice
+     * @Assert\LessThan(2)
+     * @Assert\GreaterThan(-1)
+     */
+    private ?int $code_function;
 
     public function __construct()
     {
