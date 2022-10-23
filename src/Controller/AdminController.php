@@ -59,6 +59,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    //    Switch for active status (on or off)
+    #[Route('/activer/{id}', name: 'activer')]
+    public function activation(Users $users, ManagerRegistry $doctrine) : Response
+    {
+        $users->setActive(($users->getActive()) ? false : true);
+        $entityManager = $doctrine->getManager();  //new way to call entityManager into php 8
+        $entityManager->persist($users);
+        $entityManager->flush();
+
+        return new Response("true");
+    }
 
 }
 
