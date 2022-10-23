@@ -33,7 +33,9 @@ class AdminController extends AbstractController
     {
         return $this -> render("admin/users.html.twig", [
             // display users directly
-            'users' => $users -> findAll()
+            'users' => $users -> findBy([
+                'code_function' => ''
+            ])
         ]);
     }
 
