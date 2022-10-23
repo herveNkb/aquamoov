@@ -25,4 +25,13 @@ window.onload = () => {
 
         })
     }
+
+    // For the deleted button of franchises and structures
+    let deleteBtn = document.querySelectorAll(".btn-delete");
+    for (let button of deleteBtn) {
+        button.addEventListener("click", function () {
+            document.querySelector(".modal-footer a").href = `/admin/supprimer/${this.dataset.id}`;
+            document.querySelector(".modal-body").innerText = `Êtes-vous sûr(e)  de vouloir supprimer "${this.dataset.email}"`;
+        });
+    }
 }
