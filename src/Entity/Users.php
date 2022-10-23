@@ -251,4 +251,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+//  Function serve for switch active user account into AdminController.php
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
 }
