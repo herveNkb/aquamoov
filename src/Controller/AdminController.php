@@ -73,6 +73,18 @@ class AdminController extends AbstractController
         return new Response("true");
     }
 
+    //Deleted user profile
+    #[Route('/supprimer/{id}', name: 'supprimer')]
+    public function deleted(Users $users, ManagerRegistry $doctrine) : Response
+    {
+        $entityManager = $doctrine->getManager(); //new way to call entityManager into php
+        $entityManager->remove($users);
+        $entityManager->flush();
+
+        $this->addFlash('message', 'Profil supprimé avec succès !');
+        return $this->redirectToRoute('app_admin_utilisateurs');
+    }
+
 }
 
 
