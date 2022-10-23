@@ -47,7 +47,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $permissions;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private ?bool $isVerified = false;
+
+    #[ORM\Column]
+    private ?int $code_function = null;
 
     public function __construct()
     {
@@ -256,6 +259,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function getActive(): ?bool
     {
         return $this->active;
+    }
+
+    public function getCodeFunction(): ?int
+    {
+        return $this->code_function;
+    }
+
+    public function setCodeFunction(int $code_function): self
+    {
+        $this->code_function = $code_function;
+
+        return $this;
     }
 
 }
