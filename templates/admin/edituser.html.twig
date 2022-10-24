@@ -4,8 +4,8 @@
 
 {% block body %}
     <main class="container-form">
-        <h1>Modification des informations</h1>
-        <div class="form">
+        <h1 class="title-form">Modification</h1>
+        <div class="form form-register-tablet container-pc">
             {{ form_start(userForm) }}
             {{ form_row(userForm.email, {
                 label: 'E-mail',
@@ -37,7 +37,7 @@
             <div class="container-btn-form">
                 <button
                         type="submit"
-                        class="btn-form btn-form-position btn-modify"
+                        class="btn-form btn-form-position btn-login"
                 >
                     Enregistrement
                 </button>
