@@ -39,6 +39,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    //  Super Administrator back office
+    #[Route('/super-admin', name: 'super-admin')]
+    //injection de dépendance
+    public function superAdminList(UsersRepository $users): Response
+    {
+        return $this -> render("admin/users.html.twig", [
+            // display users directly
+            'users' => $users -> findAll()
+        ]);
+    }
+
     //    Edit user profile with "Modifier" button
     #[Route('/utilisateur.modifier/{id}', name: 'modifier_utilisateur')]
     public function editUser(Users $user, Request $request, ManagerRegistry $doctrine): Response
